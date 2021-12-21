@@ -885,3 +885,77 @@ if ( !function_exists('tf_wp_admin_login_logo_title') ) :
     add_filter( 'login_headertext', 'tf_wp_admin_login_logo_title' );
 
 endif;
+//add_action( 'init', 'blockusers_init' );
+//function blockusers_init() {
+//    if ( !is_admin()) {
+//        wp_redirect( home_url() );
+//        exit;
+//    }
+//}
+
+
+
+
+
+function add_custom_meta_box()
+{
+    add_meta_box("demo-meta-box", "Users Access", "custom_meta_box_markup", "page", "side", "high", null);
+}
+
+add_action("add_meta_boxes", "add_custom_meta_box");
+function custom_meta_box_markup($post)
+{
+    wp_nonce_field('service_save', 'service_metabox');
+    $value = get_post_meta($post->ID, 'authorized_access', true);
+    if (empty($value) || $value !== "1") {
+        $value = "unchecked";
+    } else {
+        $value = "checked";
+    }
+    echo "<p>select page admin</p>
+          <select name=\"role\" id=\"role\">
+    <option value=\"admin\" >admin</option>
+    <option value=\"author\">author</option>
+    <option value=\"editor\">editor</option>
+    <option value=\"4th\">Audi</option>
+  </select>";
+}
+
+
+
+function smashing_filter_posts_columns($columns)
+{
+    $columns["authorized access"]=__( 'authorized access' );
+    return $columns;
+}
+add_filter('manage_pages_columns', 'smashing_filter_posts_columns');
+
+//$value = get_post_meta($post_id, 'dbt_text', true);
+
+
+function smashing_services_column($column, $post_id)
+{
+    $appear_on_home = get_post_meta($post_id, 'authorized_access', true);
+    switch ($column) {
+        case 'authorized_access':
+            if ($appear_on_home === "1")
+                echo '✓';
+            else
+                echo '❌';
+    }
+}
+add_action('manage_pages_custom_column', 'smashing_services_column');
+
+function custom_redirects() {
+
+//missing part now is that i need to take the data from the meta box and give to this hook compare data
+//so that specific user can enter the page
+// also query the database to get the roles dont write them staticly
+//
+    if ( !current_user_can($NameTakenFromMetaBoxMeta)) {
+        include('404.php');
+        exit(0);
+    }
+
+}
+add_action( 'template_redirect', 'custom_redirects' );
