@@ -194,13 +194,13 @@ function get_post_type_archive_template() {
  *
  * 1. author-{nicename}.php
  * 2. author-{id}.php
- * 3. author.php
+ * 3. page-author.php
  *
  * An example of this is:
  *
  * 1. author-john.php
  * 2. author-1.php
- * 3. author.php
+ * 3. page-author.php
  *
  * The template hierarchy and template path are filterable via the {@see '$type_template_hierarchy'}
  * and {@see '$type_template'} dynamic hooks, where `$type` is 'author'.
@@ -220,7 +220,7 @@ function get_author_template() {
 		$templates[] = "author-{$author->user_nicename}.php";
 		$templates[] = "author-{$author->ID}.php";
 	}
-	$templates[] = 'author.php';
+	$templates[] = 'page-author.php';
 
 	return get_query_template( 'author', $templates );
 }

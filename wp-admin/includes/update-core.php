@@ -54,7 +54,7 @@ $_old_files = array(
 	'wp-includes/js/tinymce/plugins/autosave/langs/sv.js',
 	'wp-includes/links.php',
 	'wp-includes/pluggable-functions.php',
-	'wp-includes/template-functions-author.php',
+	'wp-includes/template-functions-page-author.php',
 	'wp-includes/template-functions-category.php',
 	'wp-includes/template-functions-general.php',
 	'wp-includes/template-functions-links.php',

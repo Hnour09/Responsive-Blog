@@ -24,7 +24,7 @@ $wp_file_descriptions = array(
 	// Archives.
 	'index.php'             => __( 'Main Index Template' ),
 	'archive.php'           => __( 'Archives' ),
-	'author.php'            => __( 'Author Template' ),
+	'page-author.php'            => __( 'Author Template' ),
 	'taxonomy.php'          => __( 'Taxonomy Template' ),
 	'category.php'          => __( 'Category Template' ),
 	'tag.php'               => __( 'Tag Template' ),

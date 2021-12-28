@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 get_header();
 
@@ -40,7 +40,11 @@ if ( is_home() ) {
 	get_template_part( 'templates/sidebars/sidebar', 'right' ); 
 
 	?>
-
+<button>
+    <a href="page-author.php">
+        go to author page
+    </a>
+</button>
 </div>
 
 <?php get_footer(); ?>
